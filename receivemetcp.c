@@ -217,6 +217,13 @@ int main(int argc, char *argv[])
             clientAddressLength = sizeof(clientAddress);
             getpeername(fd, &clientAddress, &clientAddressLength);
 
+            char *hostname = "N/A";
+            struct hostent *host = gethostbyaddr(&clientAddress, clientAddressLength, AF_INET);
+            if (host != NULL)
+            {
+              hostname = host->h_name;
+            }
+
             int duration = time(NULL) - info->connected_time;
 
             int speed;
@@ -229,9 +236,10 @@ int main(int argc, char *argv[])
               speed = info->received / duration;
             }
 
-            printf("%i | %s (N/A) | %i | %i | %i s\n",
+            printf("%i | %s (%s) | %i | %i | %i s\n",
                    info->connected_time,
                    get_ip_str(&clientAddress, msg, sizeof(msg)),
+                   hostname,
                    info->received,
                    speed,
                    duration);
