@@ -1,0 +1,101 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(gdb) Launch Server",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/mnt/c/Users/Simon/Desktop/git/patrikarlos/networkprogramming/assignment_tcp/receive",
+            "args": [
+                "5555"
+            ],
+            "stopAtEntry": false,
+            "cwd": "/mnt/c/Users/Simon/Desktop/git/patrikarlos/networkprogramming/assignment_tcp",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "/path/to/gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "pipeTransport": {
+                "pipeCwd": "",
+                "pipeProgram": "c:\\windows\\sysnative\\bash.exe",
+                "pipeArgs": [
+                    "-c"
+                ],
+                "debuggerPath": "/usr/bin/gdb"
+            },
+            "sourceFileMap": {
+                "/mnt/c": "${env:systemdrive}/",
+                "/usr": "C:/ubuntu-18.04/rootfs/usr"
+            },
+            "windows": {
+                "MIMode": "gdb",
+                "miDebuggerPath": "/usr/bin/gdb",
+                "setupCommands": [
+                    {
+                        "description": "Enable pretty-printing for gdb",
+                        "text": "-enable-pretty-printing",
+                        "ignoreFailures": true
+                    }
+                ]
+            },
+            "preLaunchTask": "Build"
+        },
+        {
+            "name": "(gdb) Launch Client",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/mnt/c/Users/Simon/Desktop/git/patrikarlos/networkprogramming/assignment_tcp/sendto",
+            "args": [
+                "127.0.0.1:5555",
+                "sendmetcp.c"
+            ],
+            "stopAtEntry": false,
+            "cwd": "/mnt/c/Users/Simon/Desktop/git/patrikarlos/networkprogramming/assignment_tcp",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "/path/to/gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "pipeTransport": {
+                "pipeCwd": "",
+                "pipeProgram": "c:\\windows\\sysnative\\bash.exe",
+                "pipeArgs": [
+                    "-c"
+                ],
+                "debuggerPath": "/usr/bin/gdb"
+            },
+            "sourceFileMap": {
+                "/mnt/c": "${env:systemdrive}/",
+                "/usr": "C:/ubuntu-18.04/rootfs/usr"
+            },
+            "windows": {
+                "MIMode": "gdb",
+                "miDebuggerPath": "/usr/bin/gdb",
+                "setupCommands": [
+                    {
+                        "description": "Enable pretty-printing for gdb",
+                        "text": "-enable-pretty-printing",
+                        "ignoreFailures": true
+                    }
+                ]
+            },
+            "preLaunchTask": "Build"
+        }
+    ]
+}

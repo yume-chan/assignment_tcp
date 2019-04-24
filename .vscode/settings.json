@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.ftl": "html",
+        "time.h": "c",
+        "types.h": "c"
+    }
+}
