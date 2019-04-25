@@ -67,29 +67,31 @@ int main(int argc, char *argv[])
 	char *Destport = strtok(NULL, delim);
 	char *filename = argv[2];
 
-	printf(" %s sending to %s:%s \n", filename, Desthost, Destport);
+	printf("Opening %s sending to %s:%s.\n", filename, Desthost, Destport);
 
-	FILE* file = fopen(filename, "r");
+	FILE *file = fopen(filename, "r");
 	if (file == NULL)
 	{
-		printf("error");
-		return -1;
+		printf("open file failed.\n");
+		exit(-1);
 	}
 
 	fseek(file, 0, SEEK_END);
 	numbytes = ftell(file);
 	fseek(file, 0, SEEK_SET);
 
+	sockfd = socket(AF_INET, SOCK_STREAM, IPPROTO_IP);
+
 	server_address.sin_family = AF_INET;
 	inet_pton(AF_INET, Desthost, &server_address.sin_addr);
 	server_address.sin_port = htons(strtol(Destport, NULL, 10));
-	sockfd = socket(AF_INET, SOCK_STREAM, IPPROTO_IP);
-
 	if (connect(sockfd, &server_address, sizeof(server_address)) < 0)
 	{
-		printf("error");
-		return -1;
+		printf("connect failed.\n");
+		exit(-1);
 	}
+
+	printf("Connected, Sending");
 
 	gettimeofday(&GTOD_before, NULL);
 
@@ -107,14 +109,8 @@ int main(int argc, char *argv[])
 
 	timeval_subtract(&difference, &GTOD_after, &GTOD_before);
 
-	if (difference.tv_sec > 0)
-	{
-		printf("%ld.%06ld [s]\n", difference.tv_sec, difference.tv_usec);
-	}
-	else
-	{
-		printf("%6ld [us]\n", difference.tv_usec);
-	}
+	printf(", Sent %i bytes, ", numbytes);
+	printf("in %ld us.\n", difference.tv_sec * 1000000 + difference.tv_usec);
 
 	return 0;
 }
